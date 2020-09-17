@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "projects")
 public class Project {
 
     @Id
@@ -25,12 +26,23 @@ public class Project {
     private String description;
     private Date dateOfStart;
 
-
+    @ManyToMany(mappedBy = "projects")
+    private List<Developer> developers = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "project_owners_id")
     private ProjectOwner projectOwner;
 
+    public Project(City city, DeveloperType developerType, String salary,
+                   String description, Date dateOfStart, List<Developer> developers, ProjectOwner projectOwner) {
+        this.city = city;
+        this.developerType = developerType;
+        this.Salary = salary;
+        this.description = description;
+        this.dateOfStart = dateOfStart;
+        this.developers = developers;
+        this.projectOwner = projectOwner;
+    }
 
     public Project() {
     }
@@ -81,5 +93,21 @@ public class Project {
 
     public void setDateOfStart(Date dateOfStart) {
         this.dateOfStart = dateOfStart;
+    }
+
+    public List<Developer> getDevelopers() {
+        return developers;
+    }
+
+    public void setDevelopers(List<Developer> developers) {
+        this.developers = developers;
+    }
+
+    public ProjectOwner getProjectOwner() {
+        return projectOwner;
+    }
+
+    public void setProjectOwner(ProjectOwner projectOwner) {
+        this.projectOwner = projectOwner;
     }
 }

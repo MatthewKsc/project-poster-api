@@ -4,12 +4,12 @@ import com.matthewksc.projectposterapi.entity.enums.DeveloperType;
 import com.matthewksc.projectposterapi.entity.enums.LevelOfExperience;
 import com.matthewksc.projectposterapi.entity.enums.Role;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Table(name = "developers")
 public class Developer extends AbstractEntity {
 
     @OneToOne
@@ -21,7 +21,21 @@ public class Developer extends AbstractEntity {
     @Enumerated(EnumType.STRING)
     private LevelOfExperience levelOfExperience;
 
-    //TODO manytomany to project
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "developers_projects",
+            joinColumns = @JoinColumn(name = "developers_id"),
+            inverseJoinColumns = @JoinColumn(name = "projects_id"))
+    private List<Project> projects = new ArrayList<>();
+
+    public Developer(String firstName, String surName, String username, String password, String email, Role role,
+                     Address address, DeveloperType developerType, LevelOfExperience levelOfExperience, List<Project> projects) {
+        super(firstName, surName, username, password, email, role);
+        this.address = address;
+        this.developerType = developerType;
+        this.levelOfExperience = levelOfExperience;
+        this.projects = projects;
+    }
 
     public Developer() {
         super();
@@ -51,4 +65,11 @@ public class Developer extends AbstractEntity {
         this.levelOfExperience = levelOfExperience;
     }
 
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
 }
