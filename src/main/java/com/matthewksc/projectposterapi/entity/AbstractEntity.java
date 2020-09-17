@@ -1,5 +1,7 @@
 package com.matthewksc.projectposterapi.entity;
 
+import com.matthewksc.projectposterapi.entity.enums.Role;
+
 import javax.persistence.*;
 import java.util.Objects;
 
