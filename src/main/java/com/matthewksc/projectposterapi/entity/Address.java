@@ -9,7 +9,7 @@ public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String ID;
+    private Long ID;
 
     @Enumerated(EnumType.STRING)
     private City city;
@@ -24,7 +24,8 @@ public class Address {
     @OneToOne
     private ProjectOwner projectOwner;
 
-    public Address(City city, String street, String houseNumber, String postalCode, Developer developer, ProjectOwner projectOwner) {
+    public Address(City city, String street, String houseNumber, String postalCode,
+                   Developer developer, ProjectOwner projectOwner) {
         this.city = city;
         this.street = street;
         this.houseNumber = houseNumber;
@@ -36,11 +37,11 @@ public class Address {
     public Address() {
     }
 
-    public String getID() {
+    public Long getID() {
         return ID;
     }
 
-    public void setID(String ID) {
+    public void setID(Long ID) {
         this.ID = ID;
     }
 
