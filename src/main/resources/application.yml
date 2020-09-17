@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://localhost;databaseName=project_poster
+    username: Matthew
+    password: matt123
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServer2012Dialect
