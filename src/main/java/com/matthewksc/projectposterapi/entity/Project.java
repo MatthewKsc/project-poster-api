@@ -22,6 +22,7 @@ public class Project {
     @Enumerated(EnumType.STRING)
     private DeveloperType developerType;
 
+    private String Title;
     private String Salary;
     private String description;
     private Date dateOfStart;
@@ -33,7 +34,7 @@ public class Project {
     @JoinColumn(name = "project_owners_id")
     private ProjectOwner projectOwner;
 
-    public Project(City city, DeveloperType developerType, String salary,
+    public Project(String Title, City city, DeveloperType developerType, String salary,
                    String description, Date dateOfStart, List<Developer> developers, ProjectOwner projectOwner) {
         this.city = city;
         this.developerType = developerType;
@@ -42,6 +43,7 @@ public class Project {
         this.dateOfStart = dateOfStart;
         this.developers = developers;
         this.projectOwner = projectOwner;
+        this.Title = Title;
     }
 
     public Project() {
@@ -69,6 +71,14 @@ public class Project {
 
     public void setDeveloperType(DeveloperType developerType) {
         this.developerType = developerType;
+    }
+
+    public String getTitle() {
+        return Title;
+    }
+
+    public void setTitle(String title) {
+        Title = title;
     }
 
     public String getSalary() {
