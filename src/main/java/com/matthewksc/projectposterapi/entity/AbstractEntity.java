@@ -8,7 +8,7 @@ public class AbstractEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long ID;
 
     private String firstName;
     private String surName;
@@ -16,19 +16,15 @@ public class AbstractEntity {
     private String password;
     private String email;
 
-    @OneToOne
-    private Address address;
-
     @Enumerated(EnumType.STRING)
     private Role role;
 
     public AbstractEntity(String firstName, String surName, String username,
-                          String password, Address address, String email, Role role) {
+                          String password, String email, Role role) {
         this.firstName = firstName;
         this.surName = surName;
         this.username = username;
         this.password = password;
-        this.address = address;
         this.email = email;
         this.role = role;
     }
@@ -37,11 +33,11 @@ public class AbstractEntity {
     }
 
     public Long getId() {
-        return id;
+        return ID;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long ID) {
+        this.ID = ID;
     }
 
     public String getFirstName() {
@@ -76,14 +72,6 @@ public class AbstractEntity {
         this.password = password;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -105,31 +93,29 @@ public class AbstractEntity {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         AbstractEntity that = (AbstractEntity) obj;
-        return Objects.equals(id, that.id) &&
+        return Objects.equals(ID, that.ID) &&
                 Objects.equals(firstName, that.firstName) &&
                 Objects.equals(surName, that.surName) &&
                 Objects.equals(username, that.username) &&
                 Objects.equals(password, that.password) &&
                 Objects.equals(email, that.email) &&
-                Objects.equals(address, that.address) &&
                 role == that.role;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, surName, username, password, email, address, role);
+        return Objects.hash(ID, firstName, surName, username, password, email, role);
     }
 
     @Override
     public String toString() {
         return "AbstractEntity{" +
-                "id=" + id +
+                "ID=" + ID +
                 ", firstName='" + firstName + '\'' +
                 ", surName='" + surName + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
-                ", address=" + address +
                 ", role=" + role +
                 '}';
     }
