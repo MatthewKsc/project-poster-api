@@ -5,6 +5,7 @@ spring:
     username: Matthew
     password: matt123
   jpa:
+    show-sql: true
     hibernate:
       ddl-auto: create
     properties:

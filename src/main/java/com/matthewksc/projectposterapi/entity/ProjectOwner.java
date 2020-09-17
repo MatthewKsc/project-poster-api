@@ -14,7 +14,7 @@ public class ProjectOwner extends AbstractEntity {
     @OneToOne
     private Address address;
 
-    @OneToMany(mappedBy = "project_owners")
+    @OneToMany(mappedBy = "projectOwner")
     private List<Project> projects = new ArrayList<>();
 
     public ProjectOwner() {
