@@ -5,6 +5,8 @@ import com.matthewksc.projectposterapi.entity.enums.DeveloperType;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Project {
@@ -18,14 +20,16 @@ public class Project {
 
     @Enumerated(EnumType.STRING)
     private DeveloperType developerType;
+
     private String Salary;
     private String description;
     private Date dateOfStart;
 
 
-//    private Developer developer;
-//
-//    private ProjectOwner projectOwner;
+
+    @ManyToOne
+    @JoinColumn(name = "project_owners_id")
+    private ProjectOwner projectOwner;
 
 
     public Project() {

@@ -1,7 +1,6 @@
 package com.matthewksc.projectposterapi.entity;
 
 import com.matthewksc.projectposterapi.entity.enums.City;
-
 import javax.persistence.*;
 
 @Entity
