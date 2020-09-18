@@ -2,6 +2,7 @@ package com.matthewksc.projectposterapi.entity;
 
 import com.matthewksc.projectposterapi.entity.enums.City;
 import com.matthewksc.projectposterapi.entity.enums.DeveloperType;
+import com.matthewksc.projectposterapi.entity.enums.LevelOfExperience;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -22,6 +23,9 @@ public class Project {
     @Enumerated(EnumType.STRING)
     private DeveloperType developerType;
 
+    @Enumerated(EnumType.STRING)
+    private LevelOfExperience requiredExperience;
+
     private String Title;
     private String Salary;
     private String description;
@@ -34,10 +38,11 @@ public class Project {
     @JoinColumn(name = "project_owners_id")
     private ProjectOwner projectOwner;
 
-    public Project(String Title, City city, DeveloperType developerType, String salary,
+    public Project(String Title, City city, DeveloperType developerType, LevelOfExperience requiredExperience, String salary,
                    String description, Date dateOfStart, List<Developer> developers, ProjectOwner projectOwner) {
         this.city = city;
         this.developerType = developerType;
+        this.requiredExperience = requiredExperience;
         this.Salary = salary;
         this.description = description;
         this.dateOfStart = dateOfStart;
@@ -71,6 +76,14 @@ public class Project {
 
     public void setDeveloperType(DeveloperType developerType) {
         this.developerType = developerType;
+    }
+
+    public LevelOfExperience getRequiredExperience() {
+        return requiredExperience;
+    }
+
+    public void setRequiredExperience(LevelOfExperience requiredExperience) {
+        this.requiredExperience = requiredExperience;
     }
 
     public String getTitle() {
