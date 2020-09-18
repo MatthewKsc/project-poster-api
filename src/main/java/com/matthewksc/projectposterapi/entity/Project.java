@@ -38,8 +38,9 @@ public class Project {
     @JoinColumn(name = "project_owners_id")
     private ProjectOwner projectOwner;
 
-    public Project(String Title, City city, DeveloperType developerType, LevelOfExperience requiredExperience, String salary,
-                   String description, Date dateOfStart, List<Developer> developers, ProjectOwner projectOwner) {
+    public Project(String Title, City city, DeveloperType developerType, LevelOfExperience requiredExperience,
+                   String salary, String description, Date dateOfStart,
+                   List<Developer> developers, ProjectOwner projectOwner) {
         this.city = city;
         this.developerType = developerType;
         this.requiredExperience = requiredExperience;
@@ -47,6 +48,18 @@ public class Project {
         this.description = description;
         this.dateOfStart = dateOfStart;
         this.developers = developers;
+        this.projectOwner = projectOwner;
+        this.Title = Title;
+    }
+
+    public Project(String Title, City city, DeveloperType developerType, LevelOfExperience requiredExperience,
+                   String salary, String description, Date dateOfStart, ProjectOwner projectOwner) {
+        this.city = city;
+        this.developerType = developerType;
+        this.requiredExperience = requiredExperience;
+        this.Salary = salary;
+        this.description = description;
+        this.dateOfStart = dateOfStart;
         this.projectOwner = projectOwner;
         this.Title = Title;
     }

@@ -29,12 +29,10 @@ public class Developer extends AbstractEntity {
     private List<Project> projects = new ArrayList<>();
 
     public Developer(String firstName, String surName, String username, String password, String email, Role role,
-                     Address address, DeveloperType developerType, LevelOfExperience levelOfExperience, List<Project> projects) {
+                     DeveloperType developerType, LevelOfExperience levelOfExperience) {
         super(firstName, surName, username, password, email, role);
-        this.address = address;
         this.developerType = developerType;
         this.levelOfExperience = levelOfExperience;
-        this.projects = projects;
     }
 
     public Developer() {

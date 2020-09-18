@@ -1,6 +1,7 @@
 package com.matthewksc.projectposterapi.entity;
 
 import com.matthewksc.projectposterapi.entity.enums.City;
+
 import javax.persistence.*;
 
 @Entity
@@ -17,20 +18,11 @@ public class Address {
     private String houseNumber;
     private String postalCode;
 
-    @OneToOne
-    private Developer developer;
-
-    @OneToOne
-    private ProjectOwner projectOwner;
-
-    public Address(City city, String street, String houseNumber, String postalCode,
-                   Developer developer, ProjectOwner projectOwner) {
+    public Address(City city, String street, String houseNumber, String postalCode) {
         this.city = city;
         this.street = street;
         this.houseNumber = houseNumber;
         this.postalCode = postalCode;
-        this.developer = developer;
-        this.projectOwner = projectOwner;
     }
 
     public Address() {
@@ -74,21 +66,5 @@ public class Address {
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
-    }
-
-    public Developer getDeveloper() {
-        return developer;
-    }
-
-    public void setDeveloper(Developer developer) {
-        this.developer = developer;
-    }
-
-    public ProjectOwner getProjectOwner() {
-        return projectOwner;
-    }
-
-    public void setProjectOwner(ProjectOwner projectOwner) {
-        this.projectOwner = projectOwner;
     }
 }
