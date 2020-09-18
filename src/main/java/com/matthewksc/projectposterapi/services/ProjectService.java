@@ -19,36 +19,36 @@ public class ProjectService {
         this.projectRepo = projectRepo;
     }
 
-    public List<Project> findAllByCity(City city) {
+    public Iterable<Project> findAllByCity(City city) {
         return projectRepo.findAllByCity(city);
     }
 
-    public List<Project> findAllByDeveloperType(DeveloperType developerType) {
+    public Iterable<Project> findAllByDeveloperType(DeveloperType developerType) {
         return projectRepo.findAllByDeveloperType(developerType);
     }
 
-    public List<Project> findAllByRequiredExperience(LevelOfExperience levelOfExperience) {
+    public Iterable<Project> findAllByRequiredExperience(LevelOfExperience levelOfExperience) {
         return projectRepo.findAllByRequiredExperience(levelOfExperience);
     }
 
-    public List<Project> findByTitle(String searchTitle) {
+    public Iterable<Project> findByTitle(String searchTitle) {
         return projectRepo.findByTitle(searchTitle);
     }
 
-    public List<Project> findAll() {
+    public Optional<Project> findById(Long id) {
+        return projectRepo.findById(id);
+    }
+
+    public Iterable<Project> findAll() {
         return projectRepo.findAll();
     }
 
-    public List<Project> saveAll(List<Project> projects) {
+    public Iterable<Project> saveAll(List<Project> projects) {
         return projectRepo.saveAll(projects);
     }
 
     public Project save(Project project) {
         return projectRepo.save(project);
-    }
-
-    public Optional<Project> findById(Long id) {
-        return projectRepo.findById(id);
     }
 
     public void deleteById(Long id) {
