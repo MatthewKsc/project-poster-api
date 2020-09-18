@@ -18,7 +18,7 @@ public interface ProjectRepo extends JpaRepository<Project, Long> {
 
     List<Project> findAllByRequiredExperience(LevelOfExperience levelOfExperience);
 
-    @Query("select p from Project p " +
+    @Query("select p from Project as p " +
             "where lower(p.Title) like lower(concat('%', :searchTitle, '%' ))")
     List<Project> findByTitle(@Param("searchTitle") String searchTitle);
 }
