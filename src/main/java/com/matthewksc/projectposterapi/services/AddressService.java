@@ -15,23 +15,27 @@ public class AddressService {
         this.addressRepo = addressRepo;
     }
 
-    public Iterable<Address> findAll() {
-        return addressRepo.findAll();
-    }
-
-    public Optional<Address> findById(Long id) {
-        return addressRepo.findById(id);
+    public Address findById(Long id) {
+        return addressRepo
+                .findById(id)
+                .orElseThrow(()-> new RuntimeException("No such Address with id: " +id));
     }
 
     public Iterable<Address> saveAll(Iterable<Address> addresses) {
         return addressRepo.saveAll(addresses);
     }
 
-    public Address save(Address address) {
-        return addressRepo.save(address);
+    public Address save(Optional<Address> address) {
+        if (address.isPresent()){
+            return addressRepo.save(address.get());
+        }else{
+            throw new RuntimeException("No object of address is presented");
+        }
     }
 
     public void deleteById(Long id) {
-        addressRepo.deleteById(id);
+        addressRepo.findById(id)
+                .ifPresent(address -> addressRepo.delete(address));
     }
+
 }
