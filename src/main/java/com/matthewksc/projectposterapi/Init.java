@@ -68,7 +68,7 @@ public class Init {
                 new Developer("George", "Clown", "george123", "123",
                         "george@clown.pl", Role.USER, DeveloperType.FULLSTACK, LevelOfExperience.SENIOR),
                 new Developer("Samanta", "Tree", "samanta123", "123",
-                        "samanta@tree.pl", Role.USER, DeveloperType.FRONTED, LevelOfExperience.MID)
+                        "samanta@tree.pl", Role.USER, DeveloperType.FRONTEND, LevelOfExperience.MID)
         );
 
         for (int i=0; i<developers.size(); i++){
@@ -95,7 +95,7 @@ public class Init {
                         Date.valueOf(LocalDate.now().plusWeeks(2)),
                         Arrays.asList(developers.get(2)),
                         projectOwners.get(1)),
-                new Project("JavaScript Project", City.WARSZAWA, DeveloperType.FRONTED, LevelOfExperience.MID,
+                new Project("JavaScript Project", City.WARSZAWA, DeveloperType.FRONTEND, LevelOfExperience.MID,
                         "Undefined Salary",
                         "Working in modern project with JS/HTML/CSS and React.js",
                         Date.valueOf(LocalDate.now().plusWeeks(3)),
