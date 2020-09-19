@@ -27,8 +27,8 @@ public class ProjectOwnerService {
         return projectOwnerRepo.saveAll(projectOwners);
     }
 
-    public ProjectOwner save(Optional<ProjectOwner> projectOwner) {
-        return projectOwnerRepo.save(projectOwner.get());
+    public ProjectOwner save(ProjectOwner projectOwner) {
+        return projectOwnerRepo.save(projectOwner);
     }
 
     public void deleteById(Long id) {
