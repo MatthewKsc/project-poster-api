@@ -29,7 +29,7 @@ public class AddressService {
         if (address.isPresent()){
             return addressRepo.save(address.get());
         }else{
-            throw new RuntimeException("No object of address is presented");
+            throw new RuntimeException("No object of address were presented");
         }
     }
 

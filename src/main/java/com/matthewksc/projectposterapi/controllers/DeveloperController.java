@@ -22,13 +22,13 @@ public class DeveloperController {
     }
 
     @GetMapping("/")
-    public Optional<Developer> getDevById(@RequestParam(name = "id") Long id){
+    public Developer getDevById(@RequestParam(name = "id") Long id){
         return developerService.findById(id);
     }
 
     @PostMapping("/design")
     public Developer saveDev(@RequestBody Developer developer){
-        return developerService.save(developer);
+        return developerService.save(Optional.ofNullable(developer));
     }
 
     @DeleteMapping("")

@@ -4,7 +4,6 @@ import com.matthewksc.projectposterapi.entity.Developer;
 import com.matthewksc.projectposterapi.repositories.DeveloperRepo;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,23 +15,31 @@ public class DeveloperService {
         this.developerRepo = developerRepo;
     }
 
-    public List<Developer> findAll() {
+    public Iterable<Developer> findAll() {
         return developerRepo.findAll();
     }
 
-    public Optional<Developer> findById(Long id) {
-        return developerRepo.findById(id);
+    public Developer findById(Long id) {
+        return developerRepo
+                .findById(id)
+                .orElseThrow(()-> new RuntimeException("No such Developer with id: " +id));
     }
 
     public Iterable<Developer> saveAll(Iterable<Developer> developers) {
         return developerRepo.saveAll(developers);
     }
 
-    public Developer save(Developer developer) {
-        return developerRepo.save(developer);
+    public Developer save(Optional<Developer> developer) {
+        if (developer.isPresent()){
+            return developerRepo.save(developer.get());
+        }else{
+            throw new RuntimeException("No object of developer were presented ");
+        }
     }
 
     public void deleteById(Long id) {
-        developerRepo.deleteById(id);
+        developerRepo
+                .findById(id)
+                .ifPresent(developer -> developerRepo.delete(developer));
     }
 }
