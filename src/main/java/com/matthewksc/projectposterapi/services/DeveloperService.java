@@ -33,7 +33,7 @@ public class DeveloperService {
         if (developer.isPresent()){
             return developerRepo.save(developer.get());
         }else{
-            throw new RuntimeException("No object of developer were presented ");
+            throw new RuntimeException("No object of developer were presented");
         }
     }
 

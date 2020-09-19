@@ -22,13 +22,13 @@ public class ProjectOwnerController {
     }
 
     @GetMapping("/")
-    public Optional<ProjectOwner> getProjectOwnerById(@RequestParam(name = "id") Long id){
+    public ProjectOwner getProjectOwnerById(@RequestParam(name = "id") Long id){
         return projectOwnerService.findById(id);
     }
 
     @PostMapping("/design")
     public ProjectOwner saveProjectOwner(@RequestBody ProjectOwner projectOwner){
-        return projectOwnerService.save(projectOwner);
+        return projectOwnerService.save(Optional.ofNullable(projectOwner));
     }
 
     @DeleteMapping("")

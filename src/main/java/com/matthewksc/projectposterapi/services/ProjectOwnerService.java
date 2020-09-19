@@ -19,16 +19,21 @@ public class ProjectOwnerService {
         return projectOwnerRepo.findAll();
     }
 
-    public Optional<ProjectOwner> findById(Long id) {
-        return projectOwnerRepo.findById(id);
+    public ProjectOwner findById(Long id) {
+        return projectOwnerRepo.findById(id)
+                .orElseThrow(()-> new RuntimeException("No such Project Owner with id: " +id));
     }
 
     public Iterable<ProjectOwner> saveAll(Iterable<ProjectOwner> projectOwners) {
         return projectOwnerRepo.saveAll(projectOwners);
     }
 
-    public ProjectOwner save(ProjectOwner projectOwner) {
-        return projectOwnerRepo.save(projectOwner);
+    public ProjectOwner save(Optional<ProjectOwner> projectOwner) {
+        if (projectOwner.isPresent()){
+            return projectOwnerRepo.save(projectOwner.get());
+        }else{
+            throw new RuntimeException("No object of ProjectOwner were presented");
+        }
     }
 
     public void deleteById(Long id) {
