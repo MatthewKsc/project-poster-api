@@ -1,5 +1,6 @@
 package com.matthewksc.projectposterapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.matthewksc.projectposterapi.entity.enums.City;
 import com.matthewksc.projectposterapi.entity.enums.DeveloperType;
 import com.matthewksc.projectposterapi.entity.enums.LevelOfExperience;
@@ -32,10 +33,12 @@ public class Project {
     private Date dateOfStart;
 
     @ManyToMany(mappedBy = "projects")
+    @JsonIgnore
     private List<Developer> developers = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "project_owners_id")
+    @JsonIgnore
     private ProjectOwner projectOwner;
 
     public Project(String Title, City city, DeveloperType developerType, LevelOfExperience requiredExperience,

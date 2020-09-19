@@ -8,7 +8,6 @@ import com.matthewksc.projectposterapi.repositories.ProjectRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProjectService {
@@ -35,8 +34,10 @@ public class ProjectService {
         return projectRepo.findByTitle(searchTitle);
     }
 
-    public Optional<Project> findById(Long id) {
-        return projectRepo.findById(id);
+    public Project findById(Long id) {
+        return projectRepo
+                .findById(id)
+                .orElseThrow(()-> new RuntimeException("No such project with id: "+ id));
     }
 
     public Iterable<Project> findAll() {
