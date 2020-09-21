@@ -46,8 +46,6 @@ public class DeveloperServiceTest {
     @Test
     void findById(){
         List<Developer> developers = initData();
-        developers.get(0).setId(1L);
-        developers.get(1).setId(3L);
 
         given(developerRepo.findById(1L)).willReturn(Optional.of(developers.get(0)));
         given(developerRepo.findById(3L)).willReturn(Optional.of(developers.get(1)));
@@ -56,10 +54,10 @@ public class DeveloperServiceTest {
         Developer result2 = developerService.findById(3L);
 
         assertAll(
-                ()-> assertEquals(developers.get(0), result),
-                ()-> assertEquals(developers.get(1), result2),
-                ()-> assertNotEquals(developers.get(0), result2),
-                ()-> assertNotEquals(developers.get(1), result),
+                ()-> assertSame(developers.get(0), result),
+                ()-> assertSame(developers.get(1), result2),
+                ()-> assertNotSame(developers.get(0), result2),
+                ()-> assertNotSame(developers.get(1), result),
                 ()-> assertThrows(RuntimeException.class, ()->developerService.findById(2L))
         );
     }
@@ -74,8 +72,8 @@ public class DeveloperServiceTest {
 
         assertAll(
                 ()-> assertEquals(developers.size(), result.size()),
-                ()-> assertEquals(developers.get(0), result.get(0)),
-                ()-> assertEquals(developers.get(1), result.get(1)),
+                ()-> assertSame(developers.get(0), result.get(0)),
+                ()-> assertSame(developers.get(1), result.get(1)),
                 ()-> assertSame(developers, result),
                 ()-> assertNotSame(fake, result),
                 ()-> verify(developerRepo, times(1)).saveAll(developers)
@@ -89,11 +87,10 @@ public class DeveloperServiceTest {
 
         Developer result = developerService.save(Optional.of(developer));
         Developer fake = new Developer();
-        fake.setId(1L);
 
         assertAll(
-                ()-> assertEquals(developer, result),
-                ()-> assertNotEquals(fake, result),
+                ()-> assertSame(developer, result),
+                ()-> assertNotSame(fake, result),
                 ()-> verify(developerRepo, times(1)).save(developer),
                 ()-> assertThrows(RuntimeException.class, ()-> developerService.save(null))
         );

@@ -46,8 +46,6 @@ public class ProjectOwnerServiceTest {
     @Test
     void findById() {
         List<ProjectOwner> projectOwners = initData();
-        projectOwners.get(0).setId(1L);
-        projectOwners.get(1).setId(3L);
         given(projectOwnerRepo.findById(1L)).willReturn(Optional.of(projectOwners.get(0)));
         given(projectOwnerRepo.findById(3L)).willReturn(Optional.of(projectOwners.get(1)));
 
@@ -55,10 +53,10 @@ public class ProjectOwnerServiceTest {
         ProjectOwner result2 = projectOwnerService.findById(3L);
 
         assertAll(
-                ()-> assertEquals(projectOwners.get(0), result),
-                ()-> assertEquals(projectOwners.get(1), result2),
-                ()-> assertNotEquals(projectOwners.get(0), result2),
-                ()-> assertNotEquals(projectOwners.get(1), result),
+                ()-> assertSame(projectOwners.get(0), result),
+                ()-> assertSame(projectOwners.get(1), result2),
+                ()-> assertNotSame(projectOwners.get(0), result2),
+                ()-> assertNotSame(projectOwners.get(1), result),
                 ()-> assertThrows(RuntimeException.class, ()->projectOwnerService.findById(2L))
         );
     }
@@ -73,8 +71,8 @@ public class ProjectOwnerServiceTest {
 
         assertAll(
                 ()-> assertEquals(projectOwners.size(), result.size()),
-                ()-> assertEquals(projectOwners.get(0), result.get(0)),
-                ()-> assertEquals(projectOwners.get(1), result.get(1)),
+                ()-> assertSame(projectOwners.get(0), result.get(0)),
+                ()-> assertSame(projectOwners.get(1), result.get(1)),
                 ()-> assertSame(projectOwners, result),
                 ()-> assertNotSame(fake, result),
                 ()-> verify(projectOwnerRepo, times(1)).saveAll(projectOwners)
@@ -88,11 +86,10 @@ public class ProjectOwnerServiceTest {
 
         ProjectOwner result = projectOwnerService.save(Optional.of(projectOwner));
         ProjectOwner fake = new ProjectOwner();
-        fake.setId(1L);
 
         assertAll(
-                ()-> assertEquals(projectOwner, result),
-                ()-> assertNotEquals(fake, result),
+                ()-> assertSame(projectOwner, result),
+                ()-> assertNotSame(fake, result),
                 ()-> verify(projectOwnerRepo, times(1)).save(projectOwner),
                 ()-> assertThrows(RuntimeException.class, ()-> projectOwnerService.save(null))
         );
