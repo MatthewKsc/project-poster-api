@@ -48,7 +48,6 @@ public class ProjectOwnerServiceTest {
         List<ProjectOwner> projectOwners = initData();
         projectOwners.get(0).setId(1L);
         projectOwners.get(1).setId(3L);
-
         given(projectOwnerRepo.findById(1L)).willReturn(Optional.of(projectOwners.get(0)));
         given(projectOwnerRepo.findById(3L)).willReturn(Optional.of(projectOwners.get(1)));
 
