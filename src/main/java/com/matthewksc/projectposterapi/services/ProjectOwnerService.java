@@ -37,6 +37,10 @@ public class ProjectOwnerService {
     }
 
     public void deleteById(Long id) {
-        projectOwnerRepo.deleteById(id);
+        if (projectOwnerRepo.findById(id).isPresent()){
+            projectOwnerRepo.deleteById(id);
+        }else{
+            throw new RuntimeException("No such Project Owner with id: "+id);
+        }
     }
 }

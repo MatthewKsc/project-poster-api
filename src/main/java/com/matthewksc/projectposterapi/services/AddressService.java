@@ -34,8 +34,11 @@ public class AddressService {
     }
 
     public void deleteById(Long id) {
-        addressRepo.findById(id)
-                .ifPresent(address -> addressRepo.delete(address));
+        if (addressRepo.findById(id).isPresent()){
+            addressRepo.deleteById(id);
+        }else{
+            throw new RuntimeException("No such Address with id: "+id);
+        }
     }
 
 }

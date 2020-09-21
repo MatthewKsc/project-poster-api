@@ -38,8 +38,10 @@ public class DeveloperService {
     }
 
     public void deleteById(Long id) {
-        developerRepo
-                .findById(id)
-                .ifPresent(developer -> developerRepo.delete(developer));
+        if (developerRepo.findById(id).isPresent()){
+            developerRepo.deleteById(id);
+        }else{
+            throw new RuntimeException("No such Developer with id: "+id);
+        }
     }
 }

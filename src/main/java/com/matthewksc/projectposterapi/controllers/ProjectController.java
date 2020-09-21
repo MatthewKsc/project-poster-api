@@ -8,6 +8,8 @@ import com.matthewksc.projectposterapi.entity.enums.LevelOfExperience;
 import com.matthewksc.projectposterapi.services.ProjectService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 //TODO its test class in future change to Vaadin Router's
 @RestController
 @RequestMapping("/projects")
@@ -51,7 +53,7 @@ public class ProjectController {
 
     @PostMapping("/design")
     public Project saveProject(@RequestBody Project project){
-        return projectService.save(project);
+        return projectService.save(Optional.ofNullable(project));
     }
 
     @DeleteMapping("")

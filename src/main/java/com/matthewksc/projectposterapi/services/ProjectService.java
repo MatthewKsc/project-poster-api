@@ -8,6 +8,7 @@ import com.matthewksc.projectposterapi.repositories.ProjectRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProjectService {
@@ -48,11 +49,19 @@ public class ProjectService {
         return projectRepo.saveAll(projects);
     }
 
-    public Project save(Project project) {
-        return projectRepo.save(project);
+    public Project save(Optional<Project> project) {
+        if (project.isPresent()){
+            return projectRepo.save(project.get());
+        }else {
+            throw new RuntimeException("No object of Project were presented");
+        }
     }
 
     public void deleteById(Long id) {
-        projectRepo.deleteById(id);
+        if (projectRepo.findById(id).isPresent()){
+            projectRepo.deleteById(id);
+        }else{
+            throw new RuntimeException("No such project with: "+id);
+        }
     }
 }
