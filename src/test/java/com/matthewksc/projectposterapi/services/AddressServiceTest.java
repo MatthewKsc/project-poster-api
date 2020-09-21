@@ -84,8 +84,8 @@ public class AddressServiceTest {
     @Test
     void deleteById(){
         Address address = new Address();
-
         given(addressRepo.findById(1L)).willReturn(Optional.of(address));
+
         addressService.deleteById(1L);
 
         assertAll(
