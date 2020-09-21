@@ -38,6 +38,12 @@
 <!--		</dependency>-->
 
 		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>mssql-jdbc</artifactId>
 			<scope>runtime</scope>
@@ -55,6 +61,8 @@
 			</exclusions>
 		</dependency>
 	</dependencies>
+
+
 
 <!--	<dependencyManagement>-->
 <!--		<dependencies>-->
