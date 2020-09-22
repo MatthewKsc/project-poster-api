@@ -1,6 +1,8 @@
 package com.matthewksc.projectposterapi.services;
 
 import com.matthewksc.projectposterapi.entity.ProjectOwner;
+import com.matthewksc.projectposterapi.exceptions.Project.NotFoundProjectException;
+import com.matthewksc.projectposterapi.exceptions.ProjectOwner.NotFoundProjectOwnerException;
 import com.matthewksc.projectposterapi.repositories.ProjectOwnerRepo;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +23,7 @@ public class ProjectOwnerService {
 
     public ProjectOwner findById(Long id) {
         return projectOwnerRepo.findById(id)
-                .orElseThrow(()-> new RuntimeException("No such Project Owner with id: " +id));
+                .orElseThrow(()-> new NotFoundProjectException(id));
     }
 
     public Iterable<ProjectOwner> saveAll(Iterable<ProjectOwner> projectOwners) {
@@ -32,7 +34,7 @@ public class ProjectOwnerService {
         if (projectOwner.isPresent()){
             return projectOwnerRepo.save(projectOwner.get());
         }else{
-            throw new RuntimeException("No object of ProjectOwner were presented");
+            throw new NotFoundProjectOwnerException();
         }
     }
 
@@ -40,7 +42,7 @@ public class ProjectOwnerService {
         if (projectOwnerRepo.findById(id).isPresent()){
             projectOwnerRepo.deleteById(id);
         }else{
-            throw new RuntimeException("No such Project Owner with id: "+id);
+            throw new NotFoundProjectException(id);
         }
     }
 }
