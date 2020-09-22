@@ -1,6 +1,7 @@
 package com.matthewksc.projectposterapi.services;
 
 import com.matthewksc.projectposterapi.entity.Address;
+import com.matthewksc.projectposterapi.exceptions.Address.NotFoundAddressException;
 import com.matthewksc.projectposterapi.repositories.AddressRepo;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,7 @@ public class AddressService {
     public Address findById(Long id) {
         return addressRepo
                 .findById(id)
-                .orElseThrow(()-> new RuntimeException("No such Address with id: " +id));
+                .orElseThrow(()-> new NotFoundAddressException(id));
     }
 
     public Iterable<Address> saveAll(Iterable<Address> addresses) {
@@ -29,7 +30,7 @@ public class AddressService {
         if (address.isPresent()){
             return addressRepo.save(address.get());
         }else{
-            throw new RuntimeException("No object of address were presented");
+            throw new NotFoundAddressException();
         }
     }
 
@@ -37,7 +38,7 @@ public class AddressService {
         if (addressRepo.findById(id).isPresent()){
             addressRepo.deleteById(id);
         }else{
-            throw new RuntimeException("No such Address with id: "+id);
+            throw new NotFoundAddressException(id);
         }
     }
 

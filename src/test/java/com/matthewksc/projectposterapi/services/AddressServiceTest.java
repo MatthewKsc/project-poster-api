@@ -30,7 +30,6 @@ public class AddressServiceTest {
     @Test
     void findById(){
         List<Address> address = initData();
-
         given(addressRepo.findById(1L)).willReturn(Optional.of(address.get(0)));
         given(addressRepo.findById(3L)).willReturn(Optional.of(address.get(1)));
 
