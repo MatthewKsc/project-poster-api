@@ -1,6 +1,7 @@
 package com.matthewksc.projectposterapi.services;
 
 import com.matthewksc.projectposterapi.entity.Developer;
+import com.matthewksc.projectposterapi.exceptions.Developer.NotFoundDeveloperException;
 import com.matthewksc.projectposterapi.repositories.DeveloperRepo;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,7 @@ public class DeveloperService {
     public Developer findById(Long id) {
         return developerRepo
                 .findById(id)
-                .orElseThrow(()-> new RuntimeException("No such Developer with id: " +id));
+                .orElseThrow(()-> new NotFoundDeveloperException(id));
     }
 
     public Iterable<Developer> saveAll(Iterable<Developer> developers) {
@@ -33,7 +34,7 @@ public class DeveloperService {
         if (developer.isPresent()){
             return developerRepo.save(developer.get());
         }else{
-            throw new RuntimeException("No object of developer were presented");
+            throw new NotFoundDeveloperException();
         }
     }
 
@@ -41,7 +42,7 @@ public class DeveloperService {
         if (developerRepo.findById(id).isPresent()){
             developerRepo.deleteById(id);
         }else{
-            throw new RuntimeException("No such Developer with id: "+id);
+            throw new NotFoundDeveloperException(id);
         }
     }
 }
