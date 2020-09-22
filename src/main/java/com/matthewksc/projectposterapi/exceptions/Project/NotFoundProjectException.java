@@ -1,4 +1,4 @@
-package com.matthewksc.projectposterapi.exceptions;
+package com.matthewksc.projectposterapi.exceptions.Project;
 
 public class NotFoundProjectException extends RuntimeException{
 

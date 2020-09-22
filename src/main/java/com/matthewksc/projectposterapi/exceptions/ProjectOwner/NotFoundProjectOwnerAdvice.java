@@ -1,4 +1,4 @@
-package com.matthewksc.projectposterapi.exceptions;
+package com.matthewksc.projectposterapi.exceptions.ProjectOwner;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-public class NotFoundProjectAdvice {
+public class NotFoundProjectOwnerAdvice {
 
     @ResponseBody
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler(NotFoundProjectException.class)
-    public String NotFoundProjectHandler(NotFoundProjectException exception){
+    @ExceptionHandler(NotFoundProjectOwnerException.class)
+    public String NotFoundProjectHandler(NotFoundProjectOwnerException exception){
         return exception.getMessage();
     }
 }
