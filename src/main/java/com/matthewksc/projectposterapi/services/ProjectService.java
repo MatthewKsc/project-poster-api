@@ -4,6 +4,7 @@ import com.matthewksc.projectposterapi.entity.Project;
 import com.matthewksc.projectposterapi.entity.enums.City;
 import com.matthewksc.projectposterapi.entity.enums.DeveloperType;
 import com.matthewksc.projectposterapi.entity.enums.LevelOfExperience;
+import com.matthewksc.projectposterapi.exceptions.Project.NotFoundProjectException;
 import com.matthewksc.projectposterapi.repositories.ProjectRepo;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +39,7 @@ public class ProjectService {
     public Project findById(Long id) {
         return projectRepo
                 .findById(id)
-                .orElseThrow(()-> new RuntimeException("No such project with id: "+ id));
+                .orElseThrow(()-> new NotFoundProjectException(id));
     }
 
     public Iterable<Project> findAll() {
@@ -53,7 +54,7 @@ public class ProjectService {
         if (project.isPresent()){
             return projectRepo.save(project.get());
         }else {
-            throw new RuntimeException("No object of Project were presented");
+            throw new NotFoundProjectException();
         }
     }
 
@@ -61,7 +62,7 @@ public class ProjectService {
         if (projectRepo.findById(id).isPresent()){
             projectRepo.deleteById(id);
         }else{
-            throw new RuntimeException("No such project with: "+id);
+            throw new NotFoundProjectException(id);
         }
     }
 }
