@@ -2,6 +2,7 @@ package com.matthewksc.projectposterapi.controllers;
 
 import com.matthewksc.projectposterapi.entity.ProjectOwner;
 import com.matthewksc.projectposterapi.services.ProjectOwnerService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -17,18 +18,24 @@ public class ProjectOwnerController {
     }
 
     @GetMapping("")
-    public Iterable<ProjectOwner> getAllProjectOwners(){
-        return projectOwnerService.findAll();
+    public ResponseEntity<Iterable<ProjectOwner>> getAllProjectOwners(){
+        return ResponseEntity
+                .ok()
+                .body(projectOwnerService.findAll());
     }
 
     @GetMapping("/")
-    public ProjectOwner getProjectOwnerById(@RequestParam(name = "id") Long id){
-        return projectOwnerService.findById(id);
+    public ResponseEntity<ProjectOwner> getProjectOwnerById(@RequestParam(name = "id") Long id){
+        return ResponseEntity
+                .ok()
+                .body(projectOwnerService.findById(id));
     }
 
     @PostMapping("/design")
-    public ProjectOwner saveProjectOwner(@RequestBody ProjectOwner projectOwner){
-        return projectOwnerService.save(Optional.ofNullable(projectOwner));
+    public ResponseEntity<ProjectOwner> saveProjectOwner(@RequestBody ProjectOwner projectOwner){
+        return ResponseEntity
+                .ok()
+                .body(projectOwnerService.save(Optional.ofNullable(projectOwner)));
     }
 
     @DeleteMapping("")

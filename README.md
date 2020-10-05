@@ -1,8 +1,8 @@
 # Project Poster
-    Main idea behiand this project to allow developer to apply to certein projeckt.
-    Project have 2 types of users, one is Developer and second is Project Owner.
-    Project owner can create offerts of a project and developers can be assignet
-    to specific project.
+Main idea behiand this project to allow developer to apply to certein projeckt.
+Project have 2 types of users, one is Developer and second is Project Owner.
+Project owner can create offerts of a project and developers can be assignet
+to specific project.
 
 ## Folders and explanation
 
