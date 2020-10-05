@@ -2,6 +2,7 @@ package com.matthewksc.projectposterapi.controllers;
 
 import com.matthewksc.projectposterapi.entity.Developer;
 import com.matthewksc.projectposterapi.services.DeveloperService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -17,18 +18,24 @@ public class DeveloperController {
     }
 
     @GetMapping("")
-    public Iterable<Developer> getAllDevelopers(){
-        return developerService.findAll();
+    public ResponseEntity<Iterable<Developer>> getAllDevelopers(){
+        return ResponseEntity
+                .ok()
+                .body(developerService.findAll());
     }
 
     @GetMapping("/")
-    public Developer getDevById(@RequestParam(name = "id") Long id){
-        return developerService.findById(id);
+    public ResponseEntity<Developer> getDevById(@RequestParam(name = "id") Long id){
+        return ResponseEntity
+                .ok()
+                .body(developerService.findById(id));
     }
 
     @PostMapping("/design")
-    public Developer saveDev(@RequestBody Developer developer){
-        return developerService.save(Optional.ofNullable(developer));
+    public ResponseEntity<Developer> saveDev(@RequestBody Developer developer){
+        return ResponseEntity
+                .ok()
+                .body(developerService.save(Optional.ofNullable(developer)));
     }
 
     @DeleteMapping("")
