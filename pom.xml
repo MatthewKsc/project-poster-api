@@ -34,12 +34,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.vaadin</groupId>
-			<artifactId>vaadin</artifactId>
-			<version>${vaadin.version}</version>
-		</dependency>
-
-		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
