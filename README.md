@@ -23,4 +23,4 @@ to specific project.
 * SQL Server
 
 ##SQL schema
-![Alt text](https://github.com/MatthewKsc/project-poster-api/tree/master/src/main/resources/static/SQLschema.jpg?raw=true "SQL schema")
+![Alt text](https://github.com/MatthewKsc/project-poster-api/blob/tree/master/src/main/resources/static/SQLschema.jpg?raw=true "SQL schema")
