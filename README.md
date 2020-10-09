@@ -22,5 +22,5 @@ to specific project.
 * Maven
 * SQL Server
 
-##SQL schema
-![Alt text](https://github.com/MatthewKsc/project-poster-api/blob/tree/master/src/main/resources/static/SQLschema.jpg?raw=true "SQL schema")
+**SQL schema**
+![Alt text](https://github.com/MatthewKsc/project-poster-api/blob/master/src/main/resources/static/SQLschema.jpg?raw=true "SQL schema")
